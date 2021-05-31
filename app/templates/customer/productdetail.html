@@ -1,0 +1,44 @@
+{% extends "./base.html" %} 
+
+{% block title %} {{product.title}} {% endblock %}
+
+{% block content %}
+
+<section class="details-post-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <div class="details-text">
+                    <div class="dt-pic-item">
+                        <div class="dp-pic">
+                            <img src="/{{product.image}}" alt="">
+                        </div>
+                        <div class="dt-item">
+                            <h5>{{product.title}}</h5>
+                            <p><b>Giá:</b> {{product.selling_price}}đ &emsp; <i class="fa fa-eye"></i> Lượt xem: {{product.view_count}}</p>
+                            <p><b>Phân loại:</b> {{product.category}} &emsp; <b>Giá trị:</b> {{product.value}}</p>
+                            <p style="color:red;font-size:20px"><b>{{product.description}}</b></p>
+                        </div>
+						<a class="btn btn-secondary" href="/all-products"><i class="fa fa-undo"></i> Quay lại</a>
+                        <a class="btn btn-danger" href="{% url 'app:addtocart' product.id %}"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+                    </div><br>
+
+                    <!-- Share -->
+                    
+                    <div class="dt-share">
+                        <div class="ds-title">Chia sẻ</div>
+                        <div class="ds-links">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

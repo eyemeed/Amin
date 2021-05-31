@@ -1,0 +1,46 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Danh sách trang bị {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách trang bị</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ai in allitem %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="/{{ai.image}}"></td>
+                        <td>{{ai.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdateitem" ai.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeleteitem({{ai.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreateitem" %}' class="btn btn-primary">Thêm trang bị</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeleteitem(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa anh hùng này?')){
+        location.href = '/staff-delete-item/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

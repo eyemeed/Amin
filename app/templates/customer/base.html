@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Amin Template">
+    <meta name="keywords" content="Amin, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+{% block menu %}
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Horizontal Menu Begin -->
+    <div class="humberger-menu-overlay"></div>
+    <div class="humberger-menu-wrapper">
+        <div class="hw-logo">
+            <a href="#"><img src="/static/img/f-logo.png" alt=""></a>
+        </div>
+        <div class="hw-menu mobile-menu">
+            <ul>
+                <li><a href="{% url 'app:home' %}">Trang chủ</a></li>
+                <li><a href="{% url 'app:customerlogin' %}">Đăng nhập </a></li>
+                <li><a href="{% url 'app:customerregistration' %}">Đăng ký </a></li>
+                <li><a href="{% url 'app:mycart' %}">Giỏ hàng </a></li>
+            </ul>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="hw-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <div class="hw-insta-media">
+            <div class="section-title">
+                <h5>Instagram</h5>
+            </div>
+            <div class="insta-pic">
+                <img src="/static/img/instagram/ip-1.jpg" alt="">
+                <img src="/static/img/instagram/ip-2.jpg" alt="">
+                <img src="/static/img/instagram/ip-3.jpg" alt="">
+                <img src="/static/img/instagram/ip-4.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Horizontal Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="logo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                       <a href="./index.html"><img src="/static/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-options">
+            <div class="container">
+                <div class="humberger-menu humberger-open">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li class="active"><a href="{% url 'app:home' %}"><span>Trang chủ </span></a></li>
+                        <li class="mega-menu"><a href="{% url 'app:allnews' %}"><span>Tin tức </span></a></li>
+                        <li><a href="#"><span>Gameplay <i class="fa fa-angle-down"></i></span></a>
+                            <ul class="dropdown">
+                                <li><a href="{% url 'app:allheroes' %}">Anh hùng</a></li>
+                                <li><a href="{% url 'app:allitems' %}">Vật phẩm</a></li>
+                                <li><a href="{% url 'app:tutorial' %}">Hướng dẫn</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'app:allproducts' %}"><span>Cửa hàng</span></a>
+                        </li>
+                        <li><a href="#"><span>Chơi ngay</span></a></li>
+                        <li>
+                            {% if request.user.customer %}
+                            <a href="#"><span>Chào mừng {{request.user.username}} <i class="fa fa-angle-down"></i></span></a>
+                            <ul class="dropdown">
+                                <li><a href="{% url 'app:customerprofile' %}">Thông tin</a></li>
+                                <li><a href="{% url 'app:customerlogout' %}">Đăng xuất</a></li>
+                            </ul>
+                            {% else %}
+                            <a href="{% url 'app:customerlogin' %}"><span>Đăng nhập <i class="fa fa-angle-down"></i></span></a>
+                            <ul class="dropdown">
+                                <li><a href="{% url 'app:customerregistration' %}">Đăng ký</a></li>
+                            </ul>
+                            {% endif %}
+                        </li>
+                        <li><a href="{% url 'app:mycart' %}"><span><i style="size:20px" class="fa fa-shopping-cart"></i></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+{% endblock %} 
+  
+{% block content %} {% endblock %}
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <div class="fa-logo">
+                            <a href="#"><img src="/static/img/f-logo.png" alt=""></a>
+                        </div>
+                        <p>© Amin Corporation, mọi quyền được bảo lưu. Amin, logo Amin, Nguồn Amin là các nhãn hiệu và / hoặc nhãn hiệu đã đăng ký của Amin Corporation.</p>
+                        <div class="fa-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="editor-choice">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="tags-cloud">
+                        <div class="section-title">
+                            <h5>Từ khóa</h5>
+                        </div>
+                        <div class="tag-list">
+                            <a href="#"><span>Gaming</span></a>
+                            <a href="#"><span>Multiplayer</span></a>
+                            <a href="#"><span>Reviews</span></a>
+                            <a href="#"><span>Hardware</span></a>
+                            <a href="#"><span>Trade</span></a>
+                            <a href="#"><span>Simulation</span></a>
+                            <a href="#"><span>Strategy</span></a>
+                            <a href="#"><span>Social Network</span></a>
+                            <a href="#"><span>Vật phẩm</span></a>
+                            <a href="#"><span>Anh hùng</span></a>
+                            <a href="#"><span>Cập nhật</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-area">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ca-text">
+                            <p><a href="https://colorlib.com" target="_blank">Tải ngay</a> ứng dụng Amin để giữ kết nối với bạn bè và tin tức trò chơi mới nhất.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ca-links">
+                            <a href="#">Giới thiệu</a>
+                            <a href="#">Đăng ký</a>
+                            <a href="#">Liên hệ</a>
+                            <a href="#">Hỗ trợ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/circle-progress.min.js"></script>
+    <script src="/static/js/jquery.barfiller.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "./base.html" %} 
+
+{% block title %} Trang bị {% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg spad" data-setbg="/static/img/breadcrumb-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <div class="breadcrumb-text">
+                    <div class="bt-option">
+                    <form>
+                    <span>Tên trang bị:</span>
+                    <input name="title"
+                        value="{{title}}"
+                        class="form-control" 
+                        placeholder="Nhập từ khóa hoặc tên trang bị...">
+
+                    <span class="mt-3">Phân loại trang bị:</span>
+                    <select name='categoryitemId' class="form-control">  
+                        <option value="">Tất cả</option>  
+                          {% for li in categoryitemList %}    
+                            <option {%if li.id == categoryitemId%}selected{%endif%}
+                              value="{{li.id}}">{{li.title}}</option>
+                          {% endfor %}    
+                    </select>
+
+                    <button class="mt-3 btn btn-danger" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
+                    </form>
+                </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<section class="categories-grid-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="breadcrumb-text">
+                            <h3><span>Danh sách trang bị</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5">
+                    {% for i in itemList %}
+                    <a href="{% url 'app:itemdetail' i.slug %}">
+                        <div class="trending-items">
+                            <div class="ti-pic">
+                                <img src="/{{i.image}}"data-toggle="tooltip" data-placement="right" title="{{i.title}}">
+                            </div>
+                        </div></a>               
+                    {% endfor %}
+                </div>            
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

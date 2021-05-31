@@ -1,0 +1,58 @@
+{% extends "./base.html" %} 
+
+{% block title %} Giỏ hàng {% endblock %}
+
+{% block content %}
+
+<section class="details-post-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="color:#fff">STT</th>
+                            <th style="color:#fff">Vật phẩm</th>
+                            <th style="color:#fff">Giá tiền</th>
+                            <th style="color:#fff">Số lượng</th>
+                            <th style="color:#fff">Tổng tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cp in cart.cartproduct_set.all %}
+                        <tr>
+                            <td style="color:#fff">{{forloop.counter}}</td>
+                            <td style="color:#fff">{{cp.product.title}}</td>
+                            <td style="color:#fff">{{cp.rate}}</td>
+                            <td style="color:#fff">{{cp.quantity}}</td>
+                            <td style="color:#fff">{{cp.subtotal}}</td>
+                            <td>
+                                <a href="{% url 'app:managecart' cp.id %}?action=inc" class="btn btn-primary"> + </a>
+                                <a href="{% url 'app:managecart' cp.id %}?action=dcr" class="btn btn-warning"> - </a>
+                                <a href="{% url 'app:managecart' cp.id %}?action=rmv" class="btn btn-danger"> x </a>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <th colspan="4" class="text-right" style="color:#fff">Tổng cộng:</th>
+                            <th style="color:#fff">{{cart.total}}đ</th>
+                            {% if cart.cartproduct_set.all %}
+                            <th style="color:#fff"><a href="{% url 'app:emptycart' %}">Xóa tất cả</a></th>
+                            {% endif %}
+                        </tr>
+                        {% if cart.cartproduct_set.all %}
+                        <tr> 
+                            <th><a class="btn btn-danger" href="{% url 'app:checkout' %}"> Thanh toán </a>
+                            <a class="btn btn-secondary" href="{% url 'app:allproducts' %}"> Mua thêm </a></th>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

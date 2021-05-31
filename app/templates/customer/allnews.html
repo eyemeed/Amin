@@ -1,0 +1,56 @@
+{% extends "./base.html" %} 
+
+{% block title %} Tin tức {% endblock %}
+
+{% block content %}
+
+<!-- Categories Grid Section Begin -->
+<section class="categories-grid-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="breadcrumb-text">
+                            <h3><span>Danh sách tin tức</span></h3>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-10 p-0">
+                    {% for n in newList %}
+                    <a href="{% url 'app:newsdetail' n.slug %}">
+                        <div class="cl-item">
+                            <div class="cl-pic">
+                                <img src="/{{n.image}}" alt="">
+                            </div>
+                            <div class="cl-text">
+                                <p style="color:#fff;font-size:30px">{{n.title}}</p><br>
+                                <p style="color:#fff;font-size:16px">Thể loại: <i style="color:red">{{n.categorynew}}</i></p>
+                        </div>
+                    </div></a>
+                    {% endfor %}
+                    <div class="pagination-item pt-5">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="/all-news/?page=1"><span>Trang đầu</span></a></li>
+                        {% if page > 1 %}
+                            <li class="page-item"><a class="page-link" href="/all-news/?page={{page|add:-1}}"><span> < </span></a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link"><span> < </span></a></li>
+                        {% endif %} 
+                        {% if page < num_page %}
+                            <li class="page-item"><a class="page-link" href="/all-news/?page={{page|add:1}}"><span> > </span></a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link"><span> > </span></a></li>
+                        {% endif %}
+                            <li class="page-item"><a class="page-link" href="/all-news/?page={{num_page}}"><span>Trang cuối</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

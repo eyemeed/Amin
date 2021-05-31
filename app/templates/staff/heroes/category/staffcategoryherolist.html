@@ -1,0 +1,44 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Phân loại anh hùng {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách phân loại anh hùng</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên vị trí</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ch in allcategoryhero %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ch.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdatecategoryhero" ch.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeletecategoryhero({{ch.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreatecategoryhero" %}' class="btn btn-primary">Thêm nhóm phân loại</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeletecategoryhero(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa?')){
+        location.href = '/staff-delete-categoryhero/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "./base.html" %} 
+
+{% block title %} {{item.title}} {% endblock %}
+
+{% block content %}
+
+<section class="details-post-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <div class="details-text">
+                    <div class="dt-pic-item">
+                        <div class="dp-pic">
+                            <img src="/{{item.image}}" alt="">
+                        </div>
+                        <div class="dt-item">
+                            <h5>{{item.title}}</h5>
+                            <p><b>Giá:</b> {{item.price}} vàng &emsp; <i class="fa fa-eye"></i> Lượt xem: {{item.view_count}}</p>
+                            <p><b>Phân loại:</b> {{item.categoryitem}} &emsp; <b>Hồi chiêu:</b> {{item.cooldown}}s</p>
+                            <p><b>{{item.description}}</b></p>
+                        </div>
+						<a class="btn btn-secondary" href="/all-items"><i class="fa fa-undo"></i> Quay lại</a>
+                    </div><br>
+
+                    <!-- Share -->
+                    
+                    <div class="dt-share">
+                        <div class="ds-title">Chia sẻ</div>
+                        <div class="ds-links">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

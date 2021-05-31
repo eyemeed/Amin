@@ -1,0 +1,51 @@
+{% extends "./base.html" %} 
+
+{% block title %} Thanh toán {% endblock %}
+
+{% block content %}
+
+<section class="details-post-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p style="color:#fff"><b>Thông tin hóa đơn</b> &emsp;&emsp;&emsp; <a href="{% url 'app:mycart' %}">Cập nhật hóa đơn</a> </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="color:#fff">STT</th>
+                                <th style="color:#fff">Vật phẩm</th>
+                                <th style="color:#fff">Giá tiền</th>
+                                <th style="color:#fff">Số lượng</th>
+                                <th style="color:#fff">Tổng tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cp in cart.cartproduct_set.all %}
+                            <tr>
+                                <td style="color:#fff">{{forloop.counter}}</td>
+                                <td style="color:#fff">{{cp.product.title}}</td>
+                                <td style="color:#fff">{{cp.rate}}</td>
+                                <td style="color:#fff">{{cp.quantity}}</td>
+                                <td style="color:#fff">{{cp.subtotal}}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <th colspan="4" class="text-right" style="color:#fff">Tổng cộng:</th>
+                                <th style="color:#fff">{{cart.total}}đ</th>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="col-md-6">
+                    <p style="color:#fff"><b>Thông tin người dùng</b></p>
+                    <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-danger">Đặt hàng</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

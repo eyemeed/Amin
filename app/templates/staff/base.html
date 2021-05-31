@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/77371529a9.js" crossorigin="anonymous"></script>
+</head>
+
+{% block menu %}
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-0">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="{% url 'app:stafforderlist' %}">Quản lý đơn hàng</a>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle nav-item nav-link" type="button" data-toggle="dropdown">Quản lý anh hùng
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'app:staffherolist' %}">Anh hùng</a></li>
+          <li><a href="{% url 'app:staffcategoryherolist' %}">Phân loại</a></li>
+          <li><a href="{% url 'app:staffstatlist' %}">Thông số</a></li>
+          <li><a href="{% url 'app:staffskilllist' %}">Kỹ năng</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle nav-item nav-link" type="button" data-toggle="dropdown">Quản lý trang bị
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'app:staffitemlist' %}">Trang bị</a></li>
+          <li><a href="{% url 'app:staffcategoryitemlist' %}">Phân loại</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle nav-item nav-link" type="button" data-toggle="dropdown">Quản lý vật phẩm
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'app:staffproductlist' %}">Vật phẩm</a></li>
+          <li><a href="{% url 'app:staffcategorylist' %}">Phân loại</a></li>
+          <li><a href="{% url 'app:staffvaluelist' %}">Giá trị</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
+          <img class="rounded-circle" style="width:60px" src="https://raw.githubusercontent.com/pytutorial/html_samples/master/css_bootstrap/user.svg">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="#">
+            Thông tin tài khoản
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'app:stafflogout' %}">
+            Đăng xuất
+          </a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+{% endblock %}
+
+{% block content %} {% endblock %}
+
+</body>
+</html>

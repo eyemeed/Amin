@@ -1,0 +1,61 @@
+{% extends 'staff/base.html' %}
+{% load humanize %}
+
+{% block title %} #ORDER_{{order.id}} {% endblock  %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto pt-5">
+            <h3>Thông tin người dùng</h3>
+            <hr>
+            <p><span class="font-weight-bold">Mã đơn hàng: </span> #ORDER_{{ord_obj.id}}</p>
+            <p><span class="font-weight-bold">Trạng thái đơn hàng: </span> {{ord_obj.order_status}}</p>
+            <p><span class="font-weight-bold">Ngày đặt đơn hàng: </span> {{ord_obj.created_at}}({{ord_obj.created_at|timesince}} trước)</p>
+            <p><span class="font-weight-bold">Tài khoản: </span> {{ord_obj.cart.customer.user}}</p>
+            <p><span class="font-weight-bold">Họ và tên người đặt: </span> {{ord_obj.ordered_by}}</p>
+            <p><span class="font-weight-bold">Số điện thoại: </span> {{ord_obj.mobile}}</p>
+            <p><span class="font-weight-bold">Email: </span> {{ord_obj.email}}</p><br>
+            <h4>Thông tin vật phẩm</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">STT</th>
+                        <th>Vật phẩm</th>
+                        <th>Giá tiền</th>
+                        <th style="text-align:center">Số lượng</th>
+                        <th style="text-align:center">Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cp in ord_obj.cart.cartproduct_set.all %}
+                    <tr>
+                        <td style="text-align:center">{{forloop.counter}}</td>
+                        <td><a target="_blank"
+                                href="{% url 'app:productdetail' cp.product.slug %}">{{cp.product.title}}({{cp.product.id}})</a>
+                        </td>
+                        <td>{{cp.rate}}</td>
+                        <td style="text-align:center">{{cp.quantity}}</td>
+                        <td style="text-align:center">{{cp.subtotal}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4" class="text-right">Tổng cộng: </th>
+                        <th style="text-align:center">{{ord_obj.total|intcomma}}đ</th>
+                    </tr>
+                </tbody>
+            </table>
+            <form action="{% url 'app:stafforderstatuschange' ord_obj.id %}" method="POST">
+                {% csrf_token %}
+                <select name="status">
+                    {% for i, j in allstatus %}
+                    <option value="{{i}}" {% if i == ord_obj.order_status %}selected{% endif %}>{{j}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-danger">Lựa chọn</button>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

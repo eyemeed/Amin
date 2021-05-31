@@ -1,0 +1,20 @@
+{% extends "./base.html" %} 
+
+{% block title %} Thành công thêm vào giỏ hàng {% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-section set-bg spad" data-setbg="/static/img/breadcrumb-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <div class="breadcrumb-text">
+                    <h3>Thêm sản phẩm vào giỏ hàng thành công!</h3>
+                    <a href="{% url 'app:allproducts' %}" class="btn btn-danger">Tiếp tục mua vật phẩm</a>
+                </div>
+            </div>    
+        </div>
+    </div>
+</section>
+
+{% endblock %}

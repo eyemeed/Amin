@@ -1,0 +1,19 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Thêm giá trị mới {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 pt-5">
+            <h3>Thêm giá trị</h3>
+            <hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-info">Lưu lại</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Danh sách anh hùng {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách anh hùng</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ah in allhero %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="/{{ah.image}}"></td>
+                        <td>{{ah.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdatehero" ah.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeletehero({{ah.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreatehero" %}' class="btn btn-primary">Thêm anh hùng</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeletehero(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa anh hùng này?')){
+        location.href = '/staff-delete-hero/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

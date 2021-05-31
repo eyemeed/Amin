@@ -1,0 +1,46 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Danh sách kỹ năng {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách kỹ năng</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asl in allskill %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="/{{asl.image}}"></td>
+                        <td>{{asl.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdateskill" asl.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeleteskill({{asl.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreateskill" %}' class="btn btn-primary">Thêm kỹ năng</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeleteskill(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa kỹ năng này?')){
+        location.href = '/staff-delete-skill/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Danh sách phân loại vật phẩm {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách phân loại</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ac in allcategory %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ac.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdatecategory" ac.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeletecategory({{ac.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreatecategory" %}' class="btn btn-primary">Thêm trang bị</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeletecategory(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa phân loại này?')){
+        location.href = '/staff-delete-category/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

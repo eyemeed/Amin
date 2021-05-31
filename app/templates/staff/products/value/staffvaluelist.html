@@ -1,0 +1,44 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Danh sách giá trị {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách giá trị</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên giá trị</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for av in allvalue %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{av.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdatevalue" av.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeletevalue({{av.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreatevalue" %}' class="btn btn-primary">Thêm giá trị</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeletevalue(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa?')){
+        location.href = '/staff-delete-value/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

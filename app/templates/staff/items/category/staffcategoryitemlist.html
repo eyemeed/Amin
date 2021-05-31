@@ -1,0 +1,44 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Quản lý phân loại trang bị {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách phân loại trang bị</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên vị trí</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aci in allcategoryitem %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{aci.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdatecategoryitem" aci.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeletecategoryitem({{aci.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreatecategoryitem" %}' class="btn btn-primary">Thêm nhóm phân loại</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeletecategoryitem(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa?')){
+        location.href = '/staff-delete-categoryitem/' + id;
+      }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "./base.html" %} 
+
+{% block title %} {{hero.title}} {% endblock %}
+
+{% block content %}
+
+<section class="details-post-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <div class="details-text">
+                    <div class="dt-pic-item">
+                        <div class="dp-pic">
+                            <img src="/{{hero.image}}" alt="">
+                        </div>
+                        <div class="dt-item">
+                            <h5>{{hero.title}}</h5>
+                            <p><b>Vị trí:</b>{% for c in hero.categoryhero.all %} {{ c.title }}, {% endfor %} &emsp; <i class="fa fa-eye"></i> Lượt xem: {{hero.view_count}}</p>
+                                <p><b>Máu:</b> {{hero.stat.health}} &emsp; <b>Máu hồi/giây:</b> {{hero.stat.health_regen}}</p>
+                                <p><b>Năng lượng:</b> {{hero.stat.mana}} &emsp; <b>Năng lượng hồi/giây:</b> {{hero.stat.mana_regen}}</p>
+                                <p><b>Sát thương:</b> {{hero.stat.damage}} &emsp; <b>Phép thuật:</b> {{hero.stat.magic}}</p>
+                                <p><b>Giáp:</b> {{hero.stat.armor}} &emsp; <b>Kháng phép:</b> {{hero.stat.magic_resistance}}</p>
+                                <p><b>Tốc độ đánh:</b> {{hero.stat.att_speed}}</p>
+                                <p><b>Phạm vi tấn công:</b> {{hero.stat.att_range}}</p>
+                                <p><b>Tốc độ di chuyển:</b> {{hero.stat.move_speed}}</p>
+                                <p><b>Tần nhìn (ngày/đêm):</b> {{hero.stat.vision_range}}</p>
+                        </div>
+                    </div><br>
+                    <div class="dt-quote">
+                        <p style="text-align:center">{{hero.speech}} <span> - {{hero.title}}</span></p>
+                    </div>
+                    <div class="dt-last-desc">
+                        <p>{{hero.description}}</p>
+                    </div>
+
+                    <!-- Abilities -->
+
+                    <div class="dt-item">
+                        <h5>Kỹ năng</h5>
+                    </div>
+                    <hr style="border: 1px solid white">
+                    {% for sk in hero.skill.all %}
+                        <div class="dt-pic-item">
+                            <div class="dp-pic">
+                                <img src="/{{sk.image}}" alt="">
+                            </div>
+                            <div class="dt-item">
+                                <p style="font-size:24px"><b>{{sk.title}}</b></p>
+                            </div>
+                            <div class="dp-text">                            
+                                <ul>
+                                    <li><i>Khả năng: {{sk.ability}}</i> &emsp;&emsp;&emsp;&emsp; <i>Ảnh hưởng: {{sk.affects}}</i></li>
+                                    <li><i>Kiểu sát thương: {{sk.type_damage}}</i> &emsp;&emsp;&emsp; <i>Hồi chiêu: {{sk.cooldown}}</i></li>
+                                </ul>
+                            <p>{{sk.description}}</p>
+                            </div>
+                        </div>
+                        <hr style="border: 1px solid white"><br>
+                    {% endfor %}
+                    <!-- Share -->
+                    
+                    <div class="dt-share">
+                        <div class="ds-title">Chia sẻ</div>
+                        <div class="ds-links">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

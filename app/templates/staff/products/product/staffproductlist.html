@@ -1,0 +1,46 @@
+{% extends "staff/base.html" %}
+
+{% block title %} Danh sách vật phẩm {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pt-5">
+            <h3>Danh sách vật phẩm</h3><br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ap in allproduct %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="/{{ap.image}}" width="100px" height="100px"></td>
+                        <td>{{ap.title}}</td>
+                        <td>
+                            <a href='{% url "app:staffupdateproduct" ap.id %}' class="btn btn-sm btn-primary">Cập nhật</a>
+                            <a href='javascript:staffdeleteproduct({{ap.id}})' class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href='{% url "app:staffcreateproduct" %}' class="btn btn-primary">Thêm trang bị</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function staffdeleteproduct(id) {
+      if(confirm('Bạn có chắc chắn muốn xóa vật phẩm này?')){
+        location.href = '/staff-delete-product/' + id;
+      }
+    }
+</script>
+
+{% endblock %}
